@@ -1,0 +1,26 @@
+diff --git a/src/newuidmap.c b/src/newuidmap.c
+index 1ba25e7..b0e022c 100644
+--- a/src/newuidmap.c
++++ b/src/newuidmap.c
+@@ -66,21 +66,6 @@ static bool verify_range(struct passwd *pw, struct map_range *range)
+ static void verify_ranges(struct passwd *pw, int ranges,
+ 	struct map_range *mappings)
+ {
+-	struct map_range *mapping;
+-	int idx;
+-
+-	mapping = mappings;
+-	for (idx = 0; idx < ranges; idx++, mapping++) {
+-		if (!verify_range(pw, mapping)) {
+-			fprintf(stderr, _( "%s: uid range [%lu-%lu) -> [%lu-%lu) not allowed\n"),
+-				Prog,
+-				mapping->upper,
+-				mapping->upper + mapping->count,
+-				mapping->lower,
+-				mapping->lower + mapping->count);
+-			exit(EXIT_FAILURE);
+-		}
+-	}
+ }
+ 
+ void usage(void)

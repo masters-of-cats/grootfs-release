@@ -9,6 +9,9 @@ tar xvzf shadow/shadow-4.3.1.tar.gz
 
 (
   cd shadow-4.3.1
+  patch src/newuidmap.c < ../shadow/src.newuidmap-skip-range-verification.patch
+  patch src/newgidmap.c < ../shadow/src.newgidmap-skip-range-verification.patch
+
   autoreconf -v -f --install || exit 1
   ./configure \
         CFLAGS="-O2 -Wall" \

@@ -1,0 +1,26 @@
+diff --git a/src/newgidmap.c b/src/newgidmap.c
+index b1e3351..9d93549 100644
+--- a/src/newgidmap.c
++++ b/src/newgidmap.c
+@@ -66,21 +66,6 @@ static bool verify_range(struct passwd *pw, struct map_range *range)
+ static void verify_ranges(struct passwd *pw, int ranges,
+ 	struct map_range *mappings)
+ {
+-	struct map_range *mapping;
+-	int idx;
+-
+-	mapping = mappings;
+-	for (idx = 0; idx < ranges; idx++, mapping++) {
+-		if (!verify_range(pw, mapping)) {
+-			fprintf(stderr, _( "%s: gid range [%lu-%lu) -> [%lu-%lu) not allowed\n"),
+-				Prog,
+-				mapping->upper,
+-				mapping->upper + mapping->count,
+-				mapping->lower,
+-				mapping->lower + mapping->count);
+-			exit(EXIT_FAILURE);
+-		}
+-	}
+ }
+ 
+ static void usage(void)
