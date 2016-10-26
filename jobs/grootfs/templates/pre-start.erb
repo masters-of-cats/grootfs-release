@@ -1,6 +1,9 @@
 #!/bin/bash
 
+JOB_DIR=/var/vcap/jobs/grootfs
 BASE_PATH=$(dirname $0)
 
 ${BASE_PATH}/btrfs-setup
 ${BASE_PATH}/drax-setup
+
+cp /etc/{subuid,subgid} $JOB_DIR/
