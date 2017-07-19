@@ -28,6 +28,7 @@ groups:
   - thanos-refresh-rootfs
   - deploy-stable-release
   - test-upgrade
+  - test-grootfs-diagnostics-release
   - create-grootfs-diagnostics-release
 - name: grootfs
   jobs:
@@ -41,6 +42,7 @@ groups:
   - deliver
 - name: diagnostics
   jobs:
+  - test-grootfs-diagnostics-release
   - create-grootfs-diagnostics-release
 - name: bench-release
   jobs:
@@ -1060,6 +1062,8 @@ jobs:
   - do:
     - aggregate:
       - get: grootfs-ci-secrets
+      - get: dev-release
+        resource: grootfs-release-develop
       - get: grootfs-release-develop
         passed:
         - deploy-grootfs-bench
@@ -1073,6 +1077,7 @@ jobs:
       file: grootfs-release-develop/ci/tasks/ship-it.yml
       params:
         PRIVATE_YML: {{grootfs-release-private-yaml}}
+        NAME: grootfs
     - aggregate:
       - put: grootfs-release-master
         params:
@@ -1367,7 +1372,7 @@ jobs:
       CF_LOGGREGATOR_CERTS: {{thanos-cf-loggregator-certs}}
       CF_NETWORKING: {{thanos-cf-networking}}
       DATADOG_API_KEY: {{datadog-api-key}}
-      DATADOG_APP_KEY: {{datadog-application-key}}
+      DATADOG_APPLICATION_KEY: {{datadog-application-key}}
       DATADOG_METRIC_PREFIX: "datadog.thanos.nozzle."
   - put: thanos-cf-deployment
     tags: [thanos]
@@ -1670,19 +1675,35 @@ jobs:
       - grootfs-bench-release/src/code.cloudfoundry.org/grootfs-bench
       - grootfs-bench-release
 
+- name: test-grootfs-diagnostics-release
+  plan:
+  - aggregate:
+    - get: grootfs-diagnostics-develop
+      trigger: true
+  - do:
+    - task: test
+      file: grootfs-diagnostics-develop/ci/tasks/test.yml
+    on_failure:
+      put: slack-alert
+      params:
+        username: {{slack-alert-username}}
+        icon_url: "https://i.imgur.com/0xoYLaO.png?1"
+        channel: {{slack-alert-channel}}
+        text: "<!subteam^S1U0HSJ9E|grootfsteam>: BOO! Not cool: http://grootfs.ci.cf-app.com/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME"
+
 - name: create-grootfs-diagnostics-release
   plan:
   - aggregate:
     - get: grootfs-release-develop
-      params:
-        submodules: none
     - get: version
       resource: grootfs-diagnostics-release-version
       params:
         pre: rc
     - get: release
       resource: grootfs-diagnostics-develop
-      trigger: true
+      passed: [test-grootfs-diagnostics-release]
+      params:
+        submodules: none
   - put: grootfs-diagnostics-release-version
     params:
       file: version/number
