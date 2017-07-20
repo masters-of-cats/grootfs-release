@@ -1,0 +1,103 @@
+name: grootfs
+version: 0.21.2
+commit_hash: bd46401
+uncommitted_changes: false
+jobs:
+- name: grootfs
+  version: ff6faffe59e76bbffd9a4478a0f25715dd7bd07f9ef1884fc6212467f570e1b2
+  fingerprint: ff6faffe59e76bbffd9a4478a0f25715dd7bd07f9ef1884fc6212467f570e1b2
+  sha1: sha256:9913a1fe86ce40c5c5183b2a853f1e9bbe82cf7bcb78d82f14c9f370ec093a15
+packages:
+- name: autoconf
+  version: 109f4668f1888e315e841d8f8396685dca2f9cb8fe9551d325d23500db0caa5f
+  fingerprint: 109f4668f1888e315e841d8f8396685dca2f9cb8fe9551d325d23500db0caa5f
+  sha1: sha256:1164f5df0842577b769a4309f9818113dafa1ddbc5259f778b373b836ea9cd2d
+  dependencies: []
+- name: automake
+  version: b8f992f578de548311f62b9358cdba7dd97ec5b19145494e39484542cbdb27d4
+  fingerprint: b8f992f578de548311f62b9358cdba7dd97ec5b19145494e39484542cbdb27d4
+  sha1: sha256:c848039f405972bf100ce729835c9304bdc03badd66101cfa2a3d7cefc85af77
+  dependencies:
+  - autoconf
+- name: btrfs-progs
+  version: 935a56352911ed5fcf6ff10bce206ded409510f7661a464524abe24fff0c9070
+  fingerprint: 935a56352911ed5fcf6ff10bce206ded409510f7661a464524abe24fff0c9070
+  sha1: sha256:87dd6b176d7a4ad3a763733fef3bdbf351be283db44a76f833873642f1177fa1
+  dependencies:
+  - autoconf
+  - automake
+  - libtool
+  - lzo
+  - pkg-config
+  - util-linux
+  - zlib
+- name: golang
+  version: ddeb4f6006c24bb49954212837b8f94b7aaf105648e968e6c04db57a083453eb
+  fingerprint: ddeb4f6006c24bb49954212837b8f94b7aaf105648e968e6c04db57a083453eb
+  sha1: sha256:2a2a0045938b294cba3d9d42da85cf3d264b37a9b416ed7c5a392f8a3e5d7ed2
+  dependencies: []
+- name: grootfs
+  version: 9f217f90517feb3c3e68795c9e77dbb39a03d8fb49959a8faaee9582b02e8a0d
+  fingerprint: 9f217f90517feb3c3e68795c9e77dbb39a03d8fb49959a8faaee9582b02e8a0d
+  sha1: sha256:06ecd621b3c87696c89ebbb212f9eb0bb45f85ce0b6f6c7ce0132a13970e737d
+  dependencies:
+  - golang
+- name: idmapper
+  version: 3319d2c98b73bb9d8b080aec2469b8b6018f56ea0aeac528f6f2c2a6f078b655
+  fingerprint: 3319d2c98b73bb9d8b080aec2469b8b6018f56ea0aeac528f6f2c2a6f078b655
+  sha1: sha256:19f8cc860bc83c3fd8f0f0cc37dcc082e2b435beea2f16d55fe1a0fbe45e26b2
+  dependencies:
+  - golang
+- name: libtool
+  version: 16bb03d3ebe2c7b7bb4136b1ed49e518f278faf6481124adc4a0b40f4a912378
+  fingerprint: 16bb03d3ebe2c7b7bb4136b1ed49e518f278faf6481124adc4a0b40f4a912378
+  sha1: sha256:c6810cc38a4217f94b9bf204e31e131e0b19196975741b8ab6405e6c333a1585
+  dependencies: []
+- name: lzo
+  version: 7ec718ef29da337d56f08e90534f561c138c2c88b576dc5da5185d85fdd42b20
+  fingerprint: 7ec718ef29da337d56f08e90534f561c138c2c88b576dc5da5185d85fdd42b20
+  sha1: sha256:7241962c701de49394b17d12b5e49d5c0edcf8191b6a8010ad31b1139ce36966
+  dependencies:
+  - autoconf
+  - automake
+  - libtool
+  - pkg-config
+- name: pkg-config
+  version: 59f8293a0c355f6ac26fbe6d185ed8d07ad6514e44efdbee45cb03f83b8ba748
+  fingerprint: 59f8293a0c355f6ac26fbe6d185ed8d07ad6514e44efdbee45cb03f83b8ba748
+  sha1: sha256:19dfad4858ec59daed70117a62d0d0568b98ab0d749090f2dd75d25cd8b820b5
+  dependencies: []
+- name: util-linux
+  version: 6310f68e8294c980de62481bced2fc915f449e3a2cc2d13a7a2a49c4a612d825
+  fingerprint: 6310f68e8294c980de62481bced2fc915f449e3a2cc2d13a7a2a49c4a612d825
+  sha1: sha256:260f0aff5034dba8557b703f364961cb0a4d0b5e3561562db8b6e795a8755502
+  dependencies:
+  - autoconf
+  - automake
+  - libtool
+  - pkg-config
+- name: xfs-progs
+  version: 6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d
+  fingerprint: 6ce014f88e05f358621a25ce48ee036d78bdb1a935a8eb556974d3de26c8614d
+  sha1: sha256:43a90815382234fc85fa2ddb05c95a8c79aff44adca6cf5d31f9c1e654831e9c
+  dependencies:
+  - autoconf
+  - automake
+  - libtool
+  - lzo
+  - pkg-config
+  - util-linux
+  - zlib
+- name: zlib
+  version: 293e16abf1e1c72bcde0ece39b87310ccb5b4b5678390d1c91b9ed0b066aa1c9
+  fingerprint: 293e16abf1e1c72bcde0ece39b87310ccb5b4b5678390d1c91b9ed0b066aa1c9
+  sha1: sha256:cfcb98dc6a4f7b4d158482315767c8db60d8dd8330dbb2001c648cc5792cbcc0
+  dependencies:
+  - autoconf
+  - automake
+  - libtool
+  - pkg-config
+license:
+  version: 6dbeab3a723ab3faef129c705ccce340ca7bd4479864b73cc93b6df9de395081
+  fingerprint: 6dbeab3a723ab3faef129c705ccce340ca7bd4479864b73cc93b6df9de395081
+  sha1: sha256:2509abaffbf73313675a72a01191f57529239c50fd1dd29f002823088b0488cf
